@@ -71,16 +71,9 @@ export default async function Home() {
                 <a
                   href="/api/auth/login?screen_hint=signup&returnTo=/dashboard"
                   className="flex items-center justify-center w-full py-3 px-5 rounded-xl
-                             border text-sm font-semibold transition-colors duration-200"
-                  style={{ borderColor: '#BCBEC0', color: '#003087' }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = '#003087';
-                    (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F5F7FA';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = '#BCBEC0';
-                    (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '';
-                  }}
+                             border border-gray-300 text-sm font-semibold transition-colors duration-200
+                             hover:border-covenir-navy hover:bg-covenir-light-bg"
+                  style={{ color: '#003087' }}
                 >
                   Create Account
                 </a>
