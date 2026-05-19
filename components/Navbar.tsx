@@ -11,96 +11,70 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-nav border-b border-gray-100 sticky top-0 z-50">
+    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex justify-between items-center h-16">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <CovenirLogo size="sm" theme="light" />
+          <Link href="/">
+            <CovenirLogo size="sm" />
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop */}
           <div className="hidden md:flex items-center gap-4">
             {user ? (
               <>
-                <Link
-                  href="/dashboard"
-                  className="text-sm font-semibold text-covenir-text hover:text-covenir-navy transition-colors px-3 py-2 rounded-lg hover:bg-gray-50"
-                >
+                <Link href="/dashboard"
+                  className="text-sm font-medium text-gray-600 hover:text-covenir-navy transition-colors">
                   Dashboard
                 </Link>
-
-                <div className="flex items-center gap-3 pl-3 border-l border-gray-200">
+                <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
                   {user.picture && (
-                    <Image
-                      src={user.picture}
-                      alt={user.name ?? 'User'}
-                      width={32}
-                      height={32}
-                      className="rounded-full ring-2 ring-covenir-navy/10"
-                    />
+                    <Image src={user.picture} alt={user.name ?? ''} width={30} height={30} className="rounded-full" />
                   )}
-                  <div className="hidden lg:block">
-                    <p className="text-xs font-semibold text-covenir-navy leading-none">{user.name}</p>
-                    <p className="text-xs text-gray-400 mt-0.5 leading-none">{user.email}</p>
-                  </div>
-                  <a
-                    href="/api/auth/logout"
-                    className="btn-primary !py-2 !px-4 text-xs"
-                  >
+                  <span className="text-sm text-gray-600 hidden lg:block">{user.name}</span>
+                  <a href="/api/auth/logout"
+                     className="text-sm font-semibold text-covenir-navy border border-covenir-navy/20 rounded-lg px-4 py-1.5 hover:bg-covenir-navy hover:text-white transition-colors">
                     Sign Out
                   </a>
                 </div>
               </>
             ) : (
-              <a href="/api/auth/login" className="btn-primary !py-2 !px-5 text-sm">
+              <a href="/api/auth/login"
+                 className="text-sm font-semibold bg-covenir-navy text-white rounded-lg px-5 py-2 hover:bg-covenir-dark transition-colors">
                 Sign In
               </a>
             )}
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 rounded-lg text-covenir-text hover:bg-gray-100 transition-colors"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
+          {/* Mobile toggle */}
+          <button className="md:hidden p-2 text-gray-500" onClick={() => setMenuOpen(!menuOpen)}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
+              {menuOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>}
             </svg>
           </button>
         </div>
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden border-t border-gray-100 py-4 space-y-1">
+          <div className="md:hidden border-t border-gray-100 py-3 space-y-1">
             {user ? (
               <>
-                <div className="flex items-center gap-3 px-3 py-2 mb-2 bg-gray-50 rounded-xl">
-                  {user.picture && (
-                    <Image src={user.picture} alt={user.name ?? 'User'} width={36} height={36} className="rounded-full" />
-                  )}
-                  <div>
-                    <p className="text-sm font-semibold text-covenir-navy">{user.name}</p>
-                    <p className="text-xs text-gray-400">{user.email}</p>
-                  </div>
+                <div className="flex items-center gap-2.5 px-2 py-2 mb-1">
+                  {user.picture && <Image src={user.picture} alt="" width={28} height={28} className="rounded-full"/>}
+                  <span className="text-sm font-medium text-gray-700">{user.name}</span>
                 </div>
                 <Link href="/dashboard" onClick={() => setMenuOpen(false)}
-                  className="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-covenir-text hover:bg-gray-50 transition-colors">
+                  className="block px-2 py-2 text-sm font-medium text-gray-700 hover:text-covenir-navy rounded-lg hover:bg-gray-50">
                   Dashboard
                 </Link>
-                <a href="/api/auth/logout"
-                  className="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-colors">
+                <a href="/api/auth/logout" className="block px-2 py-2 text-sm font-medium text-red-500 hover:bg-red-50 rounded-lg">
                   Sign Out
                 </a>
               </>
             ) : (
-              <a href="/api/auth/login" className="btn-primary w-full justify-center">
+              <a href="/api/auth/login" className="block text-center py-2.5 text-sm font-semibold bg-covenir-navy text-white rounded-xl mx-2">
                 Sign In
               </a>
             )}

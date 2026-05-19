@@ -9,7 +9,6 @@ const services = [
     title: 'FNOL & Claims',
     desc: 'First notice of loss processing and claims management support.',
     accentColor: '#003087',
-    dotColor: 'bg-covenir-navy',
     status: 'Active' as const,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -22,7 +21,6 @@ const services = [
     title: 'Virtual Mail Room',
     desc: 'Print and digital mail processing with secure document management.',
     accentColor: '#00AEEF',
-    dotColor: 'bg-covenir-cyan',
     status: 'Active' as const,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,7 +33,6 @@ const services = [
     title: 'Customer Support',
     desc: 'Dedicated support agents for your policyholders and customers.',
     accentColor: '#8DC63F',
-    dotColor: 'bg-covenir-green',
     status: 'Active' as const,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,7 +45,6 @@ const services = [
     title: 'Underwriting Support',
     desc: 'Policy review, data entry, and underwriting assistance services.',
     accentColor: '#F7941D',
-    dotColor: 'bg-covenir-orange',
     status: 'Coming Soon' as const,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +57,6 @@ const services = [
     title: 'IntellAgent AI Intake',
     desc: 'AI-powered intake routing for insurance workflows.',
     accentColor: '#7B2D8B',
-    dotColor: 'bg-covenir-purple',
     status: 'Coming Soon' as const,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +69,6 @@ const services = [
     title: 'IntelliClaims Advantage',
     desc: 'AI-assisted claims processing and real-time reporting platform.',
     accentColor: '#EC008C',
-    dotColor: 'bg-covenir-pink',
     status: 'Coming Soon' as const,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,8 +78,6 @@ const services = [
     ),
   },
 ];
-
-const activeCount = services.filter((s) => s.status === 'Active').length;
 
 export default async function Dashboard() {
   const session = await getSession();
@@ -101,46 +93,29 @@ export default async function Dashboard() {
       <main className="flex-1">
 
         {/* ── Welcome header ────────────────────── */}
-        <div style={{ background: 'linear-gradient(135deg, #001A4D 0%, #003087 55%, #0047BE 100%)' }}>
+        <div className="bg-covenir-navy text-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
-            <div className="flex items-center gap-4 mb-8">
+            <div className="flex items-center gap-4">
               {user.picture ? (
                 <Image
                   src={user.picture}
                   alt={user.name ?? 'User'}
-                  width={52}
-                  height={52}
-                  className="rounded-full ring-4 ring-white/20"
+                  width={48}
+                  height={48}
+                  className="rounded-full ring-2 ring-white/20"
                 />
               ) : (
-                <div className="w-13 h-13 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-lg">
                   {firstName[0]}
                 </div>
               )}
               <div>
                 <p className="text-covenir-cyan text-xs font-semibold uppercase tracking-widest">Welcome back</p>
-                <h1 className="text-white text-2xl sm:text-3xl font-extrabold">{firstName}</h1>
+                <h1 className="text-xl sm:text-2xl font-bold">{firstName}</h1>
                 <p className="text-white/50 text-sm">{user.email}</p>
               </div>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { label: 'Active Services', value: String(activeCount) },
-                { label: 'Open Tickets', value: '—' },
-                { label: 'Documents', value: '—' },
-                { label: 'Last Login', value: 'Today' },
-              ].map((s) => (
-                <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                  <div className="text-white text-xl font-bold">{s.value}</div>
-                  <div className="text-white/50 text-xs mt-0.5">{s.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
-
-          {/* Covenir color bar */}
           <div className="flex h-1">
             {['#8DC63F','#EC008C','#F7941D','#003087','#00AEEF','#BCBEC0','#7B2D8B'].map((c) => (
               <span key={c} className="flex-1" style={{ backgroundColor: c }} />
@@ -159,7 +134,7 @@ export default async function Dashboard() {
               href="https://www.covenirbpo.com/solutions"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-covenir-navy font-semibold hover:text-covenir-mid transition-colors hidden sm:block"
+              className="text-sm text-covenir-navy font-semibold hover:underline hidden sm:block"
             >
               All solutions ↗
             </a>
@@ -167,52 +142,24 @@ export default async function Dashboard() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((svc) => (
-              <div
-                key={svc.title}
-                className="card flex flex-col group"
-              >
-                {/* Top row */}
+              <div key={svc.title} className="card flex flex-col">
                 <div className="flex items-start justify-between mb-4">
-                  <div
-                    className="p-2.5 rounded-xl text-white"
-                    style={{ backgroundColor: svc.accentColor }}
-                  >
+                  <div className="p-2.5 rounded-xl text-white" style={{ backgroundColor: svc.accentColor }}>
                     {svc.icon}
                   </div>
-                  <span
-                    className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                      svc.status === 'Active'
-                        ? 'bg-green-50 text-green-700'
-                        : 'bg-amber-50 text-amber-700'
-                    }`}
-                  >
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                    svc.status === 'Active' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'
+                  }`}>
                     {svc.status}
                   </span>
                 </div>
-
-                {/* Content */}
-                <h3 className="font-bold text-covenir-navy mb-1.5 text-base">{svc.title}</h3>
+                <h3 className="font-bold text-covenir-navy mb-1.5">{svc.title}</h3>
                 <p className="text-sm text-gray-500 flex-1 leading-relaxed">{svc.desc}</p>
-
-                {/* Action */}
                 <button
                   disabled={svc.status === 'Coming Soon'}
+                  className="mt-5 w-full py-2.5 text-sm font-semibold rounded-xl border-2 transition-colors duration-200
+                             disabled:opacity-40 disabled:cursor-not-allowed"
                   style={svc.status === 'Active' ? { borderColor: svc.accentColor, color: svc.accentColor } : {}}
-                  className="mt-5 w-full py-2.5 text-sm font-semibold rounded-xl border-2 transition-all duration-200
-                             disabled:opacity-40 disabled:cursor-not-allowed
-                             enabled:hover:text-white"
-                  onMouseEnter={(e) => {
-                    if (svc.status === 'Active') {
-                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = svc.accentColor;
-                      (e.currentTarget as HTMLButtonElement).style.color = 'white';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (svc.status === 'Active') {
-                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = '';
-                      (e.currentTarget as HTMLButtonElement).style.color = svc.accentColor;
-                    }
-                  }}
                 >
                   {svc.status === 'Coming Soon' ? 'Coming Soon' : 'Open Service'}
                 </button>
@@ -221,28 +168,19 @@ export default async function Dashboard() {
           </div>
 
           {/* ── Support CTA ───────────────────── */}
-          <div
-            className="mt-10 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-white"
-            style={{ background: 'linear-gradient(135deg, #001A4D 0%, #003087 100%)' }}
-          >
+          <div className="mt-10 bg-covenir-navy rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-white">
             <div className="text-center sm:text-left">
               <p className="text-covenir-cyan text-xs font-semibold uppercase tracking-widest mb-1">We&apos;re here for you</p>
-              <h3 className="text-xl font-bold mb-1">Need assistance?</h3>
-              <p className="text-white/60 text-sm">
-                Our team is ready to help — reach out anytime.
-              </p>
+              <h3 className="text-lg font-bold">Need assistance?</h3>
+              <p className="text-white/60 text-sm mt-0.5">Our team is ready to help — reach out anytime.</p>
             </div>
             <div className="flex gap-3 shrink-0">
-              <a
-                href="mailto:info@covenirbpo.com"
-                className="btn-outline-white !py-2.5 !px-5 text-sm"
-              >
+              <a href="mailto:info@covenirbpo.com"
+                 className="px-5 py-2.5 border-2 border-white text-white text-sm font-semibold rounded-xl hover:bg-white hover:text-covenir-navy transition-colors">
                 Email Us
               </a>
-              <a
-                href="tel:+15084715031"
-                className="btn-accent !py-2.5 !px-5 text-sm"
-              >
+              <a href="tel:+15084715031"
+                 className="px-5 py-2.5 bg-covenir-green text-white text-sm font-semibold rounded-xl hover:brightness-95 transition-all">
                 Call Us
               </a>
             </div>
