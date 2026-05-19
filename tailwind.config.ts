@@ -9,32 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Covenir brand — sourced from official pinwheel logo
+        // Official Covenir brand hex codes
         covenir: {
-          navy:    '#003087', // primary navy blue
-          dark:    '#001A4D', // deepest navy (hero bg start)
-          mid:     '#0047BE', // mid blue (hero gradient)
-          green:   '#8DC63F', // pinwheel green
-          pink:    '#EC008C', // pinwheel pink
-          orange:  '#F7941D', // pinwheel orange
-          cyan:    '#00AEEF', // pinwheel cyan
-          purple:  '#7B2D8B', // pinwheel purple
-          gray:    '#BCBEC0', // pinwheel light gray
-          text:    '#414042', // body text dark
-          'light-bg': '#F5F7FA', // page background
+          navy:       '#003087',
+          dark:       '#001A4D',
+          green:      '#8DC63F',
+          pink:       '#EC008C',
+          orange:     '#F7941D',
+          cyan:       '#00AEEF',
+          purple:     '#7B2D8B',
+          gray:       '#BCBEC0',
+          text:       '#414042',
+          'light-bg': '#F5F7FA',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        // Montserrat — matches covenirbpo.com branding
+        sans: ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #001A4D 0%, #003087 55%, #0047BE 100%)',
-        'card-gradient': 'linear-gradient(135deg, #003087 0%, #0047BE 100%)',
+        // Primary brand gradient: navy → cyan → green
+        'brand-gradient':      'linear-gradient(135deg, #003087 0%, #00AEEF 60%, #8DC63F 100%)',
+        'brand-gradient-r':    'linear-gradient(to right, #003087, #00AEEF, #8DC63F)',
+        'brand-gradient-btn':  'linear-gradient(90deg, #003087 0%, #00AEEF 100%)',
       },
       boxShadow: {
-        'card': '0 2px 16px 0 rgba(0,0,0,0.07)',
+        'card':       '0 2px 16px 0 rgba(0,0,0,0.07)',
         'card-hover': '0 8px 32px 0 rgba(0,48,135,0.13)',
-        'nav': '0 1px 0 0 rgba(0,0,0,0.08)',
       },
     },
   },

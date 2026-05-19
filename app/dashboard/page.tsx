@@ -92,8 +92,8 @@ export default async function Dashboard() {
 
       <main className="flex-1">
 
-        {/* ── Welcome header ────────────────────── */}
-        <div className="bg-covenir-navy text-white">
+        {/* ── Welcome header — brand gradient ──────── */}
+        <div className="bg-brand-grad text-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
             <div className="flex items-center gap-4">
               {user.picture ? (
@@ -110,9 +110,11 @@ export default async function Dashboard() {
                 </div>
               )}
               <div>
-                <p className="text-covenir-cyan text-xs font-semibold uppercase tracking-widest">Welcome back</p>
-                <h1 className="text-xl sm:text-2xl font-bold">{firstName}</h1>
-                <p className="text-white/50 text-sm">{user.email}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest mb-0.5" style={{ color: '#8DC63F' }}>
+                  Welcome back
+                </p>
+                <h1 className="text-xl sm:text-2xl font-bold text-white">{firstName}</h1>
+                <p className="text-sm text-white/60">{user.email}</p>
               </div>
             </div>
           </div>
@@ -127,14 +129,15 @@ export default async function Dashboard() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
           <div className="flex items-end justify-between mb-6">
             <div>
-              <p className="section-eyebrow mb-1">Your Services</p>
+              <p className="eyebrow mb-1">Your Services</p>
               <h2 className="section-heading">Portal Services</h2>
             </div>
             <a
               href="https://www.covenirbpo.com/solutions"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-covenir-navy font-semibold hover:underline hidden sm:block"
+              className="text-sm font-semibold hover:underline hidden sm:block"
+              style={{ color: '#003087' }}
             >
               All solutions ↗
             </a>
@@ -147,13 +150,16 @@ export default async function Dashboard() {
                   <div className="p-2.5 rounded-xl text-white" style={{ backgroundColor: svc.accentColor }}>
                     {svc.icon}
                   </div>
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                    svc.status === 'Active' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'
-                  }`}>
+                    <span
+                    className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                    style={svc.status === 'Active'
+                      ? { backgroundColor: '#EDFAD3', color: '#8DC63F' }
+                      : { backgroundColor: '#FFF4E5', color: '#F7941D' }}
+                  >
                     {svc.status}
                   </span>
                 </div>
-                <h3 className="font-bold text-covenir-navy mb-1.5">{svc.title}</h3>
+                <h3 className="font-bold mb-1.5" style={{ color: '#003087' }}>{svc.title}</h3>
                 <p className="text-sm text-gray-500 flex-1 leading-relaxed">{svc.desc}</p>
                 <button
                   disabled={svc.status === 'Coming Soon'}
@@ -167,20 +173,22 @@ export default async function Dashboard() {
             ))}
           </div>
 
-          {/* ── Support CTA ───────────────────── */}
-          <div className="mt-10 bg-covenir-navy rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-white">
+          {/* ── Support CTA — brand gradient ──────── */}
+          <div className="mt-10 bg-brand-grad rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-white">
             <div className="text-center sm:text-left">
-              <p className="text-covenir-cyan text-xs font-semibold uppercase tracking-widest mb-1">We&apos;re here for you</p>
-              <h3 className="text-lg font-bold">Need assistance?</h3>
-              <p className="text-white/60 text-sm mt-0.5">Our team is ready to help — reach out anytime.</p>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: '#8DC63F' }}>
+                We&apos;re here for you
+              </p>
+              <h3 className="text-lg font-bold text-white">Need assistance?</h3>
+              <p className="text-sm mt-0.5 text-white/70">Our team is ready to help — reach out anytime.</p>
             </div>
             <div className="flex gap-3 shrink-0">
               <a href="mailto:info@covenirbpo.com"
-                 className="px-5 py-2.5 border-2 border-white text-white text-sm font-semibold rounded-xl hover:bg-white hover:text-covenir-navy transition-colors">
+                 className="btn-outline-white !py-2.5 !px-5 text-sm">
                 Email Us
               </a>
               <a href="tel:+15084715031"
-                 className="px-5 py-2.5 bg-covenir-green text-white text-sm font-semibold rounded-xl hover:brightness-95 transition-all">
+                 className="btn-green !py-2.5 !px-5 text-sm">
                 Call Us
               </a>
             </div>

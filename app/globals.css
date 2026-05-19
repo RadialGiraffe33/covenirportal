@@ -1,56 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply font-sans text-covenir-text bg-covenir-light-bg antialiased;
+    @apply font-sans text-covenir-text bg-white antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
   }
 }
 
 @layer components {
-  /* ── Buttons ─────────────────────────────── */
+  /* ── Buttons ─────────────────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm
-           bg-covenir-navy text-white shadow-sm
-           hover:bg-covenir-dark transition-all duration-200
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           font-semibold text-sm text-white shadow-sm
+           transition-all duration-200
            focus:outline-none focus:ring-2 focus:ring-covenir-navy focus:ring-offset-2;
+    background: linear-gradient(90deg, #003087 0%, #00AEEF 100%);
   }
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm
-           bg-white text-covenir-navy border border-covenir-navy/20 shadow-sm
-           hover:border-covenir-navy hover:shadow-card transition-all duration-200
-           focus:outline-none focus:ring-2 focus:ring-covenir-navy focus:ring-offset-2;
-  }
-  .btn-outline-white {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm
-           border-2 border-white text-white
-           hover:bg-white hover:text-covenir-navy transition-all duration-200
-           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-covenir-navy;
-  }
-  .btn-accent {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm
-           bg-covenir-green text-white shadow-sm
-           hover:brightness-95 transition-all duration-200
-           focus:outline-none focus:ring-2 focus:ring-covenir-green focus:ring-offset-2;
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #001A4D 0%, #0099D6 100%);
+    box-shadow: 0 4px 14px rgba(0,48,135,0.3);
   }
 
-  /* ── Cards ───────────────────────────────── */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           font-semibold text-sm text-covenir-navy bg-white
+           border border-covenir-navy/20 shadow-sm
+           hover:border-covenir-navy hover:shadow-card
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-covenir-navy focus:ring-offset-2;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           font-semibold text-sm border-2 border-white text-white
+           hover:bg-white hover:text-covenir-navy
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-white;
+  }
+
+  .btn-green {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           font-semibold text-sm text-white shadow-sm
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-covenir-green focus:ring-offset-2;
+    background-color: #8DC63F;
+  }
+  .btn-green:hover { filter: brightness(0.95); }
+
+  /* ── Cards ───────────────────────────────────────────── */
   .card {
-    @apply bg-white rounded-2xl shadow-card border border-gray-100/80 p-6
+    @apply bg-white rounded-2xl shadow-card border border-gray-100 p-6
            transition-all duration-200 hover:shadow-card-hover;
   }
-  .card-flat {
-    @apply bg-white rounded-2xl border border-gray-200 p-6;
-  }
 
-  /* ── Section headings ─────────────────────── */
-  .section-eyebrow {
-    @apply text-xs font-semibold uppercase tracking-widest text-covenir-cyan;
+  /* ── Typography helpers ──────────────────────────────── */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest;
+    color: #00AEEF;
   }
   .section-heading {
-    @apply text-2xl sm:text-3xl font-bold text-covenir-navy leading-tight;
+    @apply text-2xl sm:text-3xl font-bold leading-tight;
+    color: #003087;
+  }
+
+  /* ── Brand gradient background utility ───────────────── */
+  .bg-brand-grad {
+    background: linear-gradient(135deg, #003087 0%, #00AEEF 60%, #8DC63F 100%);
+  }
+
+  /* ── Brand color strip (pinwheel) ────────────────────── */
+  .color-strip {
+    @apply flex h-1;
   }
 }
