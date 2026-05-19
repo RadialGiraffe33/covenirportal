@@ -4,47 +4,50 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { CovenirLogo } from './CovenirLogo';
 
 export default function Navbar() {
   const { user } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-white shadow-nav border-b border-gray-100 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex justify-between items-center h-16">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex items-center">
-              <span className="text-brand-navy font-bold text-xl tracking-tight">Covenir</span>
-              <span className="text-brand-blue font-bold text-xl">Portal</span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <CovenirLogo size="sm" theme="light" />
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4">
             {user ? (
               <>
                 <Link
                   href="/dashboard"
-                  className="text-gray-600 hover:text-brand-navy font-medium transition-colors"
+                  className="text-sm font-semibold text-covenir-text hover:text-covenir-navy transition-colors px-3 py-2 rounded-lg hover:bg-gray-50"
                 >
                   Dashboard
                 </Link>
-                <div className="flex items-center gap-3">
+
+                <div className="flex items-center gap-3 pl-3 border-l border-gray-200">
                   {user.picture && (
                     <Image
                       src={user.picture}
                       alt={user.name ?? 'User'}
                       width={32}
                       height={32}
-                      className="rounded-full ring-2 ring-brand-sky"
+                      className="rounded-full ring-2 ring-covenir-navy/10"
                     />
                   )}
-                  <span className="text-sm text-gray-600">{user.name}</span>
+                  <div className="hidden lg:block">
+                    <p className="text-xs font-semibold text-covenir-navy leading-none">{user.name}</p>
+                    <p className="text-xs text-gray-400 mt-0.5 leading-none">{user.email}</p>
+                  </div>
                   <a
                     href="/api/auth/logout"
-                    className="btn-primary !py-2 !px-4 text-sm"
+                    className="btn-primary !py-2 !px-4 text-xs"
                   >
                     Sign Out
                   </a>
@@ -59,11 +62,11 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-md text-gray-600 hover:text-brand-navy"
+            className="md:hidden p-2 rounded-lg text-covenir-text hover:bg-gray-100 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {menuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -75,24 +78,29 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden border-t border-gray-100 py-4 flex flex-col gap-3">
+          <div className="md:hidden border-t border-gray-100 py-4 space-y-1">
             {user ? (
               <>
-                <div className="flex items-center gap-2 px-2 pb-2 border-b border-gray-100">
+                <div className="flex items-center gap-3 px-3 py-2 mb-2 bg-gray-50 rounded-xl">
                   {user.picture && (
-                    <Image src={user.picture} alt={user.name ?? 'User'} width={28} height={28} className="rounded-full" />
+                    <Image src={user.picture} alt={user.name ?? 'User'} width={36} height={36} className="rounded-full" />
                   )}
-                  <span className="text-sm font-medium text-gray-700">{user.name}</span>
+                  <div>
+                    <p className="text-sm font-semibold text-covenir-navy">{user.name}</p>
+                    <p className="text-xs text-gray-400">{user.email}</p>
+                  </div>
                 </div>
-                <Link href="/dashboard" className="text-gray-700 font-medium hover:text-brand-navy px-2">
+                <Link href="/dashboard" onClick={() => setMenuOpen(false)}
+                  className="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-covenir-text hover:bg-gray-50 transition-colors">
                   Dashboard
                 </Link>
-                <a href="/api/auth/logout" className="text-brand-blue font-medium px-2">
+                <a href="/api/auth/logout"
+                  className="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-colors">
                   Sign Out
                 </a>
               </>
             ) : (
-              <a href="/api/auth/login" className="btn-primary text-center mx-2">
+              <a href="/api/auth/login" className="btn-primary w-full justify-center">
                 Sign In
               </a>
             )}
