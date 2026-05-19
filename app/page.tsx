@@ -59,7 +59,7 @@ export default async function Home() {
 
               <div className="space-y-3">
                 <a
-                  href="/api/auth/login"
+                  href="/api/auth/login?returnTo=/dashboard"
                   className="flex items-center justify-center w-full py-3 px-5
                              bg-covenir-navy text-white text-sm font-semibold rounded-xl
                              hover:bg-covenir-dark transition-colors shadow-sm"
@@ -67,7 +67,7 @@ export default async function Home() {
                   Sign In
                 </a>
                 <a
-                  href="/api/auth/login?screen_hint=signup"
+                  href="/api/auth/login?screen_hint=signup&returnTo=/dashboard"
                   className="flex items-center justify-center w-full py-3 px-5
                              border border-gray-200 text-covenir-navy text-sm font-semibold rounded-xl
                              hover:border-covenir-navy hover:bg-gray-50 transition-colors"

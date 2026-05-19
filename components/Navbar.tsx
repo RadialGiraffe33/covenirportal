@@ -39,7 +39,7 @@ export default function Navbar() {
                 </div>
               </>
             ) : (
-              <a href="/api/auth/login"
+              <a href="/api/auth/login?returnTo=/dashboard"
                  className="text-sm font-semibold bg-covenir-navy text-white rounded-lg px-5 py-2 hover:bg-covenir-dark transition-colors">
                 Sign In
               </a>
@@ -74,7 +74,7 @@ export default function Navbar() {
                 </a>
               </>
             ) : (
-              <a href="/api/auth/login" className="block text-center py-2.5 text-sm font-semibold bg-covenir-navy text-white rounded-xl mx-2">
+              <a href="/api/auth/login?returnTo=/dashboard" className="block text-center py-2.5 text-sm font-semibold bg-covenir-navy text-white rounded-xl mx-2">
                 Sign In
               </a>
             )}
