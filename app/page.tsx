@@ -69,13 +69,13 @@ export default async function Home() {
                   Sign In
                 </a>
                 <a
-                  href="/api/auth/login?screen_hint=signup&returnTo=/dashboard"
+                  href="/request-access"
                   className="flex items-center justify-center w-full py-3 px-5 rounded-xl
                              border border-gray-300 text-sm font-semibold transition-colors duration-200
                              hover:border-covenir-navy hover:bg-covenir-light-bg"
                   style={{ color: '#003087' }}
                 >
-                  Create Account
+                  Request Access
                 </a>
               </div>
 
