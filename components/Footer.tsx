@@ -2,7 +2,7 @@ import { CovenirLogo } from './CovenirLogo';
 
 export default function Footer() {
   return (
-    <footer className="text-white" style={{ backgroundColor: '#001A4D' }}>
+    <footer className="text-white" style={{ background: 'linear-gradient(135deg, #003087 0%, #00AEEF 50%, #7B2D8B 100%)' }}>
       <div className="flex h-1">
         {['#8DC63F','#EC008C','#F7941D','#003087','#00AEEF','#BCBEC0','#7B2D8B'].map((c) => (
           <span key={c} className="flex-1" style={{ backgroundColor: c }} />
